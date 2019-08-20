@@ -4,6 +4,8 @@ import './SignIn.scss';
 import FormInput from '../form-input/FormInput';
 import CustomButton from '../custom-button/CustomButton';
 
+import { signInWithGoogle } from '../../firebase/utils';
+
 class SignIn extends Component {
   state = {
     email: '',
@@ -16,9 +18,9 @@ class SignIn extends Component {
   };
 
   handleChange = e => {
-    const {value, name} = e.target;
-    this.setState({[name]: value})
-  }
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
     const { email, password } = this.state;
@@ -44,10 +46,12 @@ class SignIn extends Component {
             handleChange={this.handleChange}
             required
           />
-
-          <CustomButton type='submit'>
-            Sign In
-          </CustomButton>
+          <div className='buttons'>
+            <CustomButton type='submit'>Sign In</CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>
+              Sign In with Google
+            </CustomButton>
+          </div>
         </form>
       </div>
     );
