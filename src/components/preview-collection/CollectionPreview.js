@@ -6,13 +6,10 @@ import CollectionItem from '../collection-item/CollectionItem';
 const CollectionPreview = ({ title, items }) => {
   const render = items
     .filter((item, idx) => idx < 4)
-    .map(({id, name, price, imageUrl}) => (
+    .map((item) => (
         <CollectionItem 
-          name={name} 
-          price={price}
-          id={id}
-          key={id}
-          imageUrl={imageUrl}
+          key={item.id}
+          item={item}
         />
     ));
 
