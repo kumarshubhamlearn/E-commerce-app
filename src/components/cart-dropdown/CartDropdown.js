@@ -2,12 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
 
+import {toggleCart} from '../../redux/actions/cartAction'
 import CustomButton from '../custom-button/CustomButton';
 import './CartDropdown.scss';
 import CartItem from '../cart-item/CartItem';
 import {selectCartItems} from '../../redux/selectors';
 
-const CartDropdown = ({cartItems, history}) => {
+const CartDropdown = ({cartItems, history, toggleCart}) => {
   const render = cartItems.map(item => {
     return (
       <CartItem key={item.id} item={item} />
@@ -20,7 +21,7 @@ const CartDropdown = ({cartItems, history}) => {
         {cartItems.length ? render : emptyMessage}
       </div>
       <Link to='/checkout' className='button'>
-        <CustomButton /*onClick={() => history.push('/checkout')}*/ >
+        <CustomButton onClick={() => toggleCart()} /*onClick={() => history.push('/checkout')}*/ >
           Checkout
         </CustomButton>
       </Link>
@@ -33,5 +34,9 @@ const mapStateToProps = state => ({
   cartItems: selectCartItems(state)
 })
 
+const mapDispatchToProps = dispatch => ({
+  toggleCart: () => dispatch(toggleCart())
+})
+
 //withRouter gives access to history
-export default withRouter(connect(mapStateToProps)(CartDropdown));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartDropdown));
