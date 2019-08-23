@@ -6,6 +6,7 @@ import {selectCartItems, selectCartTotal} from '../../redux/selectors';
 
 import './CheckoutPage.scss';
 import CheckoutItem from '../../components/checkout-item/CheckoutItem';
+import StripeButton from '../../components/stripe-button/StripeButton';
 
 const Checkout = ({cartItems, cartTotal}) => {
   const render = cartItems.map(cartItem => (
@@ -34,6 +35,7 @@ const Checkout = ({cartItems, cartTotal}) => {
       <div className='total'>
         <span>TOTAL: ${cartTotal}</span>
       </div>
+      <StripeButton/>
     </div>
   )
 }
