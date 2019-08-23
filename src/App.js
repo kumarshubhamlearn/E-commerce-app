@@ -12,6 +12,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/SignInAndSignUpPage
 import CheckoutPage from './pages/checkout-page/CheckoutPage';
 
 import './App.css';
+import CollectionPage from './pages/collection-page/CollectionPage';
 
 class App extends Component {
   
@@ -52,6 +53,7 @@ class App extends Component {
       <div className='App'>
         <Header />
         <Switch>
+          <Route exact path='/shop/:collectionId' component={CollectionPage} />
           <Route exact path='/' component={Homepage} />
           <Route exact path='/shop' component={ShopPage} />
           <Route exact path='/checkout' component={CheckoutPage} />
